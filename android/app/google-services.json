@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1020941840832",
+    "project_id": "klinikq-7aa1a",
+    "storage_bucket": "klinikq-7aa1a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1020941840832:android:fb36209bd38fa1793cd825",
+        "android_client_info": {
+          "package_name": "com.example.konsul"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1020941840832-4ham9iipmdmagv6r3hvdmldk0a7n33ae.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbopYe2evWTCDvxrDn-evklPOFxepOlnY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1020941840832-4ham9iipmdmagv6r3hvdmldk0a7n33ae.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
