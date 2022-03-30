@@ -6,7 +6,7 @@ const bg_color = Color(0xfff8f8ff);
 
 const red_color = Color.fromARGB(255, 255, 134, 134);
 
-const blue_color = Color.fromARGB(255, 132, 167, 255);
+const blue_color = Color(0xFF4E73DF);
 
 const yellow_color = Color.fromARGB(255, 253, 255, 139);
 
