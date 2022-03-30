@@ -1,16 +1,38 @@
-# konsul
+<h1 style="font-weight:normal">
+  <a href="https://sourcerer.io">
+    <img src=/images/Logo.png alt="Sourcerer" width=35>
+  </a>
+  &nbsp;RemindCare Apps&nbsp;
+</h1>
 
-A new Flutter project.
+Aplikasi pengingat konsultasi yng di bangun di menggunakan framework [flutter](https://github.com/flutter/flutter), dengan memanfaatkan teknologi Cloud Messaging dari [Firebase](https://firebase.google.com/).
+<br>
 
-## Getting Started
+<p align="center">
+  <img alt="sergey" src="/images/Design.png">
+</p>
 
-This project is a starting point for a Flutter application.
+Build
+=====
+Untuk melakukan build pada projek ini anda di haruskan mempunyai flutter sdk v2 dan dart sdk
 
-A few resources to get you started if this is your first Flutter project:
+```
+# Clone this repository
+$ git clone https://github.com/CloudMyn/konsul.git
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+# Go into the repository
+$ cd konsul
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Get all the packages needed
+$ flutter pub get
+
+# Run the app
+$ flutter run
+
+# Or build for production
+$  flutter build apk --split-per-abi
+```
+
+License
+=======
+Sourcerer is under the MIT license. See the [LICENSE](https://github.com/sourcerer-io/sourcerer-app/blob/develop/LICENSE.md) for more information.
