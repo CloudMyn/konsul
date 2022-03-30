@@ -27,6 +27,7 @@ class LoginPage extends StatelessWidget {
               init: LoginController(),
               builder: (controller) {
                 if (controller.validationError != null) {
+                  isButtonDisabled.value = false;
                   return AlertBox(
                     message: controller.validationError!.value.message,
                   );

@@ -24,27 +24,7 @@ class ProfileSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Center(
-            child: CircularProfileAvatar(
-              '',
-              backgroundColor: red_color,
-              radius: 100, // sets radius, default 50.0
-              borderWidth: 8, // sets border, default 0.0
-              initialsText: Text(
-                user.getInitial(),
-                style: TextStyle(
-                  fontSize: 60,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              borderColor: Color.fromARGB(255, 175, 228, 255),
-              elevation: 5.0,
-              foregroundColor: Colors.brown.withOpacity(0.5),
-              cacheImage:
-                  true, // allow widget to cache image against provided url
-              imageFit: BoxFit.cover,
-              showInitialTextAbovePicture: true,
-            ),
+            child: defaultAvatar(user.getAvatarURL()),
           ),
           Center(
             child: Container(
@@ -78,6 +58,30 @@ class ProfileSection extends StatelessWidget {
       ),
     );
   }
+
+  CircularProfileAvatar defaultAvatar(String image) {
+    debugPrint(image);
+    return CircularProfileAvatar(
+      image,
+      backgroundColor: red_color,
+      radius: 100, // sets radius, default 50.0
+      borderWidth: 8, // sets border, default 0.0
+      initialsText: Text(
+        user.getInitial(),
+        style: TextStyle(
+          fontSize: 60,
+          color: Colors.white,
+          fontWeight: FontWeight.w700,
+        ),
+      ),
+      borderColor: Color.fromARGB(255, 175, 228, 255),
+      elevation: 5.0,
+      foregroundColor: Colors.brown.withOpacity(0.5),
+      cacheImage: true, // allow widget to cache image against provided url
+      imageFit: BoxFit.cover,
+      showInitialTextAbovePicture: true,
+    );
+  }
 }
 
 class _SchBox extends StatefulWidget {
@@ -100,40 +104,45 @@ class _SchBoxState extends State<_SchBox> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<LoginController>(
-        init: LoginController(),
-        builder: (controller) {
-          return Container(
-            margin: EdgeInsets.only(top: 12),
-            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-            child: FutureBuilder<String>(
-              future: getLastSch(controller),
-              builder: (context, snapshot) {
-                String _msg = msg;
+      init: LoginController(),
+      builder: (controller) {
+        if (controller.authUser().role == UserRole.doctor) {
+          return SizedBox();
+        }
 
-                if (snapshot.hasData) {
-                  _msg = snapshot.data ?? 'Ga ada data!';
-                }
+        return Container(
+          margin: EdgeInsets.only(top: 12),
+          padding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+          child: FutureBuilder<String>(
+            future: getLastSch(controller),
+            builder: (context, snapshot) {
+              String _msg = msg;
 
-                if (snapshot.hasError) {
-                  _msg = "Terdapat kesalahan!";
-                }
+              if (snapshot.hasData) {
+                _msg = snapshot.data ?? 'Ga ada data!';
+              }
 
-                return Text(
-                  _msg,
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    color: Color.fromARGB(255, 114, 114, 114),
-                  ),
-                );
-              },
-            ),
-            decoration: BoxDecoration(
-              color: green_color,
-              borderRadius: BorderRadius.circular(8),
-            ),
-          );
-        });
+              if (snapshot.hasError) {
+                _msg = "Terdapat kesalahan!";
+              }
+
+              return Text(
+                _msg,
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: Color.fromARGB(255, 114, 114, 114),
+                ),
+              );
+            },
+          ),
+          decoration: BoxDecoration(
+            color: green_color,
+            borderRadius: BorderRadius.circular(8),
+          ),
+        );
+      },
+    );
   }
 
   Future<String> getLastSch(LoginController c) async {

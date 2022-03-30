@@ -9,7 +9,9 @@ import '../../configs/colors.dart';
 class MenuBox extends StatelessWidget {
   final List<Map<String, dynamic>> menu;
 
-  const MenuBox({Key? key, required this.menu}) : super(key: key);
+  final cNotif = Get.put(NotificationController());
+
+  MenuBox({Key? key, required this.menu}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -88,6 +90,8 @@ class MenuBox extends StatelessWidget {
   }
 
   Widget buildNotificationBadge() {
+    cNotif.countUnreadNoitf();
+
     return GetBuilder<NotificationController>(
       init: NotificationController(),
       builder: (controller) {

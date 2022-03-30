@@ -19,7 +19,7 @@ class ProfilePage extends StatelessWidget {
 
   List<Map<String, dynamic>> getMenu() => [
         {
-          'name': 'Riwayat Konsultasi',
+          'name': 'Riwayat Perawatan',
           'page': ConsultsPage(),
           'onTap': () {},
         },

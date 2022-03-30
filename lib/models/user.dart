@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:konsul/services/network_handler.dart';
 
 enum UserRole { doctor, pasien }
 
@@ -41,5 +42,9 @@ class User {
 
   String capitalize(String str) {
     return str[0].toUpperCase() + str.substring(1).toLowerCase();
+  }
+
+  String getAvatarURL() {
+    return NetworkHandler.url + "storage/app/public/avatars/" + avatar;
   }
 }

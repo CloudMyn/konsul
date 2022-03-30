@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:konsul/models/pasien.dart';
 import 'package:konsul/views/components/navbar.dart';

@@ -6,14 +6,14 @@ import 'package:konsul/models/pasien.dart';
 import 'package:konsul/models/rekam_medis.dart';
 
 class NetworkHandler {
-  static String url = "http://192.168.1.10:8000/api/";
+  static String url = "http://klinik.choicestd.com/";
 
   // static String url = "http://localhost:8000/api/";
 
   static Future<Map<String, dynamic>> authLogin(
       String email, String password) async {
     try {
-      var uri = Uri.parse(NetworkHandler.url + "login");
+      var uri = Uri.parse(NetworkHandler.url + "api/login");
 
       var response =
           await http.post(uri, body: {'email': email, 'password': password});
@@ -45,7 +45,7 @@ class NetworkHandler {
       String doctorId, String token,
       {String status = ""}) async {
     Uri url = Uri.parse(
-        NetworkHandler.url + "dokter/$doctorId/pasiens?status=proses");
+        NetworkHandler.url + "api/dokter/$doctorId/pasiens?status=proses");
 
     String except = status.contains(":") ? status.split(":").last : "";
 
@@ -88,7 +88,7 @@ class NetworkHandler {
 
   static Future<Pasien> getPasienData(String userId, String token) async {
     try {
-      var uri = Uri.parse(NetworkHandler.url + "user/$userId/pasien");
+      var uri = Uri.parse(NetworkHandler.url + "api/user/$userId/pasien");
 
       Map<String, String> headers = {
         'Authorization': "Bearer $token",
@@ -112,14 +112,41 @@ class NetworkHandler {
     }
   }
 
-  static Future<List<RekamMedis>> getRmPasien(String pasienId, String token) async {
+  static Future<void> storeFCMToken(
+      String userId, String token, String deviceToken) async {
     try {
-      
+      var uri = Uri.parse(NetworkHandler.url + "api/user/$userId/save-token");
+
       Map<String, String> headers = {
         'Authorization': "Bearer $token",
       };
 
-      var uri = Uri.parse(NetworkHandler.url + "rm/list_pasien/$pasienId");
+      var response = await http.post(uri, headers: headers, body: {
+        'fcm_token': deviceToken,
+      });
+
+      debugPrint(response.statusCode.toString());
+
+      Map<String, dynamic> body = jsonDecode(response.body);
+
+      if (body['success'] == false) {
+        throw Exception(
+            body['error'] ?? "Terjadi kesalahan di api storeFCMToken");
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+      rethrow;
+    }
+  }
+
+  static Future<List<RekamMedis>> getRmPasien(
+      String pasienId, String token) async {
+    try {
+      Map<String, String> headers = {
+        'Authorization': "Bearer $token",
+      };
+
+      var uri = Uri.parse(NetworkHandler.url + "api/rm/list_pasien/$pasienId");
 
       List<RekamMedis> rms = [];
 

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:konsul/controllers/login_controller.dart';
+import 'package:konsul/models/pasien.dart';
 import 'package:konsul/models/rekam_medis.dart';
 import 'package:konsul/models/user.dart';
 import 'package:konsul/views/components/cardx.dart';
@@ -84,11 +85,12 @@ class PatientsListPage extends StatelessWidget {
                 itemCount: rms.length,
                 itemBuilder: (context, index) {
                   RekamMedis rekamMedis = rms[index];
+                  Pasien pasien = rekamMedis.getPasien;
                   return CardX(
-                    title:
-                        rekamMedis.pasien?.nama ?? 'Data user tidak tersedia!',
+                    title: pasien.nama,
                     status: rekamMedis.status,
                     subtitle: "keluhan: ${rekamMedis.keluhan_utama}",
+                    image: pasien.user.getAvatarURL(),
                     onTap: () {
                       Get.to(PatientDataPage(pasien: rekamMedis.getPasien));
                     },

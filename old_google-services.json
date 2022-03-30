@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "487167093908",
-    "project_id": "klinikq-1ffa1",
-    "storage_bucket": "klinikq-1ffa1.appspot.com"
+    "project_number": "1020941840832",
+    "project_id": "klinikq-7aa1a",
+    "storage_bucket": "klinikq-7aa1a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:487167093908:android:9f15cdba1ab74fce89d881",
+        "mobilesdk_app_id": "1:1020941840832:android:fb36209bd38fa1793cd825",
         "android_client_info": {
           "package_name": "com.example.konsul"
         }
       },
       "oauth_client": [
         {
-          "client_id": "487167093908-khq5flmldqhj5k449io92054pbbl8emg.apps.googleusercontent.com",
+          "client_id": "1020941840832-4ham9iipmdmagv6r3hvdmldk0a7n33ae.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCxpffcKALKjCp3f-snepQIov-gxPkeT9M"
+          "current_key": "AIzaSyCbopYe2evWTCDvxrDn-evklPOFxepOlnY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "487167093908-khq5flmldqhj5k449io92054pbbl8emg.apps.googleusercontent.com",
+              "client_id": "1020941840832-4ham9iipmdmagv6r3hvdmldk0a7n33ae.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

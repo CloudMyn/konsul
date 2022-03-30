@@ -95,10 +95,10 @@ class _ConsultsPageState extends State<ConsultsPage> {
           String permasalahan = rekamMedis.keluhan_utama;
 
           return CardX(
+            image: rekamMedis.getDokter.getAvatarURL(),
             title: "Keluhan $permasalahan",
             status: rekamMedis.status,
             subtitle: "Oleh Dr. ${nama.capitalize} - $tgl",
-            showImage: false,
             onTap: () {},
           );
         }

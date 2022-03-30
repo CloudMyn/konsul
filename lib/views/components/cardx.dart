@@ -2,6 +2,7 @@
 
 import 'dart:math';
 
+import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:konsul/configs/colors.dart';
 
@@ -10,7 +11,7 @@ class CardX extends StatelessWidget {
   final String title, subtitle;
   final String status;
 
-  final Widget? image;
+  final String image;
 
   final void Function() onTap;
 
@@ -21,7 +22,7 @@ class CardX extends StatelessWidget {
     required this.subtitle,
     required this.onTap,
     this.showImage = true,
-    this.image,
+    this.image = "",
   }) : super(key: key);
 
   Color randomColor() {
@@ -58,40 +59,7 @@ class CardX extends StatelessWidget {
                 child: Flex(
                   direction: Axis.horizontal,
                   children: [
-                    !showImage
-                        ? SizedBox()
-                        : Flexible(
-                            flex: 2,
-                            child: Container(
-                              width: 75,
-                              height: 75,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: randomColor(),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  title[0].toUpperCase(),
-                                  style: TextStyle(
-                                    fontSize: 42,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.white,
-                                    shadows: const [
-                                      Shadow(
-                                        color: Color.fromARGB(117, 65, 65, 65),
-                                        blurRadius: 5,
-                                      ),
-                                      Shadow(
-                                        color:
-                                            Color.fromARGB(117, 136, 136, 136),
-                                        blurRadius: 2,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
+                    !showImage ? SizedBox() : buildImage(image),
                     Flexible(
                       flex: 8,
                       child: Padding(
@@ -142,6 +110,45 @@ class CardX extends StatelessWidget {
               ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Flexible buildImage(String image) {
+    return Flexible(
+      flex: 2,
+      child: Container(
+        width: 75,
+        height: 75,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          color: randomColor(),
+        ),
+        child: Image.network(
+          image,
+          errorBuilder: (ctx, error, s) {
+            return Center(
+              child: Text(
+                title[0].toUpperCase(),
+                style: TextStyle(
+                  fontSize: 42,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                  shadows: const [
+                    Shadow(
+                      color: Color.fromARGB(117, 65, 65, 65),
+                      blurRadius: 5,
+                    ),
+                    Shadow(
+                      color: Color.fromARGB(117, 136, 136, 136),
+                      blurRadius: 2,
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
         ),
       ),
     );

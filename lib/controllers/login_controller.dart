@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:konsul/models/pasien.dart';
@@ -68,6 +69,12 @@ class LoginController extends GetxController {
       validationError = null;
 
       User user = User.fromJson(response['user']);
+
+      // store fcm-device token
+      String deviceToken =
+          await FirebaseMessaging.instance.getToken() ?? 'none';
+
+      NetworkHandler.storeFCMToken(user.id, response['token'], deviceToken);
 
       if (rememberMe.value == true) {
         final prefs = await SharedPreferences.getInstance();

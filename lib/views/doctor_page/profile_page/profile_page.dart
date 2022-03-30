@@ -22,7 +22,7 @@ class ProfilePage extends StatelessWidget {
       'onTap': () {},
     },
     {
-      'name': 'Riwayat Konsultasi Pasien',
+      'name': 'Riwayat Perawatan Pasien',
       'page': PatientsListPage(
         pageTitle: "Riwayat Perawatan Pasien",
         patienStatus: "x:proses",
