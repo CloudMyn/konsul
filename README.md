@@ -9,7 +9,7 @@ Aplikasi pengingat konsultasi yng di bangun di menggunakan framework [flutter](h
 <br>
 
 <p align="center">
-  <img alt="sergey" src="/images/Design.png">
+  <img alt="sergey" src="/images/Design.svg">
 </p>
 
 Build
