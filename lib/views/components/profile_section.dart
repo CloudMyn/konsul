@@ -74,7 +74,7 @@ class ProfileSection extends StatelessWidget {
           fontWeight: FontWeight.w700,
         ),
       ),
-      borderColor: Color.fromARGB(255, 175, 228, 255),
+      borderColor: Color.fromARGB(255, 189, 233, 255),
       elevation: 5.0,
       foregroundColor: Colors.brown.withOpacity(0.5),
       cacheImage: true, // allow widget to cache image against provided url

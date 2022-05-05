@@ -30,6 +30,8 @@ class User {
         ? UserRole.doctor
         : UserRole.pasien;
 
+    debugPrint(user.toString());
+
     return User(
       id: user['id'].toString(),
       name: user['name'],

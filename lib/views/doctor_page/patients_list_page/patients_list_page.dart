@@ -67,8 +67,7 @@ class PatientsListPage extends StatelessWidget {
               );
             }
 
-            if (snapshot.hasError &&
-                snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasError) {
               return Center(
                 child: Text("Terdapat kesalahan dalam pengambilan data!"),
               );

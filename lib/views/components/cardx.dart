@@ -125,30 +125,34 @@ class CardX extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
           color: randomColor(),
         ),
-        child: Image.network(
-          image,
-          errorBuilder: (ctx, error, s) {
-            return Center(
-              child: Text(
-                title[0].toUpperCase(),
-                style: TextStyle(
-                  fontSize: 42,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.white,
-                  shadows: const [
-                    Shadow(
-                      color: Color.fromARGB(117, 65, 65, 65),
-                      blurRadius: 5,
-                    ),
-                    Shadow(
-                      color: Color.fromARGB(117, 136, 136, 136),
-                      blurRadius: 2,
-                    ),
-                  ],
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(5),
+          child: Image.network(
+            image,
+            fit: BoxFit.cover,
+            errorBuilder: (ctx, error, s) {
+              return Center(
+                child: Text(
+                  title[0].toUpperCase(),
+                  style: TextStyle(
+                    fontSize: 42,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                    shadows: const [
+                      Shadow(
+                        color: Color.fromARGB(117, 65, 65, 65),
+                        blurRadius: 5,
+                      ),
+                      Shadow(
+                        color: Color.fromARGB(117, 136, 136, 136),
+                        blurRadius: 2,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );

@@ -101,7 +101,7 @@ class _SchedulePageState extends State<SchedulePage> {
           return CardX(
             title: "$tgl - $nama",
             status: rekamMedis.status,
-            subtitle: "keluhan : $permasalahan}",
+            subtitle: "keluhan : $permasalahan",
             showImage: false,
             onTap: () {
               Get.to(PatientDataPage(pasien: rekamMedis.getPasien));

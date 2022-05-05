@@ -64,6 +64,8 @@ class NetworkHandler {
         for (var dataRM in data['data']) {
           debugPrint("start-loop");
 
+          debugPrint(dataRM['pasien'].toString());
+
           RekamMedis rm = RekamMedis.fromJSON(dataRM);
 
           if (status == "" || rm.status.toLowerCase() == status.toLowerCase()) {
