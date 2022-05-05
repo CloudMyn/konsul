@@ -1,5 +1,5 @@
 <h1 style="font-weight:normal">
-  <a href="https://sourcerer.io">
+  <a href="javascript: void(0)">
     <img src=/images/Logo.png alt="Sourcerer" width=35>
   </a>
   &nbsp;RemindCare Apps&nbsp;
