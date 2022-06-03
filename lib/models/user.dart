@@ -19,7 +19,7 @@ class User {
   String getInitial() {
     String initial = "";
     for (String word in name.split(" ")) {
-      initial += word[0];
+      if (initial.length <= 2) initial += word[0];
     }
 
     return initial.toUpperCase();

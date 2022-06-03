@@ -35,6 +35,7 @@ class ProfileSection extends StatelessWidget {
                   Text(
                     (user.role == UserRole.doctor ? "Dr. " : "") +
                         user.capitalize(user.name),
+                    maxLines: 2,
                     style: TextStyle(
                       fontSize: 31,
                       fontWeight: FontWeight.w600,
@@ -43,6 +44,7 @@ class ProfileSection extends StatelessWidget {
                   ),
                   Text(
                     "@${user.username}",
+                    maxLines: 1,
                     style: TextStyle(
                       fontSize: 23,
                       fontWeight: FontWeight.w500,

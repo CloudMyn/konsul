@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,6 +9,7 @@ import 'package:konsul/views/login_page/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
+// inisialisasi chanel android notifikasi
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
   'high_importance_channel',
   'High Importance Notification',
@@ -19,6 +18,7 @@ const AndroidNotificationChannel channel = AndroidNotificationChannel(
   playSound: true,
 );
 
+// inisialisasi local notifkasi
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
@@ -34,7 +34,7 @@ Future<void> _fcmBackgrounHanlder(RemoteMessage message) async {
   debugPrint("Pesan baru telah muncul: ${message.messageId}");
 }
 
-// store notification into database
+// ketika notifikasi di terima simpan ke dalam local database
 Future<void> storeNotification(RemoteNotification remoteNotification) async {
   k.Notification notification = k.Notification(
     title: remoteNotification.title ?? 'Title tdk tersedia!',
@@ -52,6 +52,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
+  // tanganin kasus di mana notifikasi masuk pada saat aplikasi
+  // dalam keadaan mati/terminated
   FirebaseMessaging.onBackgroundMessage(_fcmBackgrounHanlder);
 
   await flutterLocalNotificationsPlugin
@@ -102,9 +104,9 @@ class _PageState extends State<Page> {
   void initState() {
     super.initState();
 
+    // Keadaan di mana notifikasi yang diterima akan di tampilkan di status bar
+    // ketika aplikasi berada dalam status active, foreground, dan terminated
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      debugPrint(
-          "-------------------Aplikasi di foreground dan aktif!-------------------");
 
       RemoteNotification? notification = message.notification;
       AndroidNotification? androidNotification = message.notification?.android;
@@ -132,9 +134,10 @@ class _PageState extends State<Page> {
       }
     });
 
+
+    // Keadaan di mana notifikasi yang diterima akan di tampilkan secara langsung dengan menggunakan
+    // popup dialog, hanya berlaku ketika aplikasi sendang aktif dn terbuka
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      debugPrint(
-          "-------------------Aplikasi sedang terbuka dan aktif!-------------------");
 
       RemoteNotification? notification = message.notification;
       AndroidNotification? androidNotification = message.notification?.android;
@@ -144,12 +147,12 @@ class _PageState extends State<Page> {
           context: context,
           builder: (_) {
             return AlertDialog(
-              title: Text(notification.title ?? 'Default title'),
+              title: Text(notification.title ?? '-'),
               content: SingleChildScrollView(
                   child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(notification.body ?? 'Default body'),
+                  Text(notification.body ?? '-'),
                 ],
               )),
             );
