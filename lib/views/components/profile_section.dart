@@ -120,8 +120,11 @@ class _SchBoxState extends State<_SchBox> {
             builder: (context, snapshot) {
               String _msg = msg;
 
+
               if (snapshot.hasData) {
                 _msg = snapshot.data ?? 'Ga ada data!';
+              } else {
+                _msg = "Belum ada jadwal!";
               }
 
               if (snapshot.hasError) {
