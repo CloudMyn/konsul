@@ -26,6 +26,7 @@ class User {
   }
 
   factory User.fromJson(Map<String, dynamic> user) {
+
     UserRole role = user['profesi'].toString().toLowerCase() == "dokter"
         ? UserRole.doctor
         : UserRole.pasien;

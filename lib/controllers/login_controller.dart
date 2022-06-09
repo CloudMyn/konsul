@@ -68,6 +68,10 @@ class LoginController extends GetxController {
     } else {
       validationError = null;
 
+      if(response['profesi'].toString().toLowerCase() == 'staff') {
+        validationError = ValidationError("Mohon Maaf, user dengan role staff tdk dapat masuk!").obs;
+      }
+
       User user = User.fromJson(response['user']);
 
       // store fcm-device token
@@ -99,10 +103,14 @@ class LoginController extends GetxController {
       if (user.role == UserRole.doctor) {
         Get.off(doctor.ProfilePage());
       } else if (user.role == UserRole.pasien) {
-        Pasien pasien =
+       try {
+          Pasien pasien =
             await NetworkHandler.getPasienData(user.id, response['token']);
 
-        Get.off(patient.ProfilePage(pasien: pasien));
+          Get.off(patient.ProfilePage(pasien: pasien));
+       } catch(e) {
+          validationError = ValidationError(e.toString()).obs;
+       }
       }
     }
 

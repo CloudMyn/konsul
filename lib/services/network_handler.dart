@@ -98,7 +98,9 @@ class NetworkHandler {
 
       var response = await http.get(uri, headers: headers);
 
-      debugPrint(response.statusCode.toString());
+      if(response.body.isEmpty) {
+        throw Exception("Data pasien dari user dengan id: $userId tdk di temukan, silahkan kontak administrator untuk menambahkannya");
+      } 
 
       Map<String, dynamic> body = jsonDecode(response.body);
 
